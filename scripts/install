@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "The script needs sudo access, so please enter your password when prompted..."
+
+echo "Installing..."
+sudo rsync -av --exclude=install ./ / 2>/dev/null
+
+echo "Updating pip..."
+mkdir -p /tmp/pip_install && cd /tmp/pip_install
+curl -LO "https://bootstrap.pypa.io/get-pip.py"
+sudo /Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12 get-pip.py
+cd -
+
+echo "Installing certificates..."
+/Applications/Python\ 3.12/Install\ Certificates.command
+
+echo "Updating your shell profile..."
+/Applications/Python\ 3.12/Update\ Shell\ Profile.command
+
+echo "done"
